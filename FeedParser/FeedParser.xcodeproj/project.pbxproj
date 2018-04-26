@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		8F274FF22092312600629154 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F274FF12092312600629154 /* AppDelegate.m */; };
-		8F274FF52092312600629154 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F274FF42092312600629154 /* ViewController.m */; };
-		8F274FF82092312600629154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F274FF62092312600629154 /* Main.storyboard */; };
 		8F274FFA2092312600629154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F274FF92092312600629154 /* Assets.xcassets */; };
 		8F274FFD2092312600629154 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F274FFB2092312600629154 /* LaunchScreen.storyboard */; };
 		8F2750002092312600629154 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F274FFF2092312600629154 /* main.m */; };
 		8F27500A2092312600629154 /* FeedParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F2750092092312600629154 /* FeedParserTests.m */; };
 		8F2750152092312700629154 /* FeedParserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F2750142092312700629154 /* FeedParserUITests.m */; };
+		8F27503020923C8700629154 /* FeedsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27502E20923C8700629154 /* FeedsTableViewController.m */; };
+		8F27503320923D2100629154 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503220923D2100629154 /* Feed.m */; };
+		8F27503620923D5000629154 /* FeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503520923D5000629154 /* FeedViewModel.m */; };
+		8F27503920923EC300629154 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503820923EC300629154 /* FeedTableViewCell.m */; };
+		8F27503C2092439900629154 /* FeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503B2092439900629154 /* FeedData.m */; };
+		8F275040209245D200629154 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503F209245D200629154 /* Utility.m */; };
+		8F546D5520925CA800D39BCD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F546D5420925CA800D39BCD /* BaseTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +43,6 @@
 		8F274FED2092312600629154 /* FeedParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F274FF02092312600629154 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8F274FF12092312600629154 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8F274FF32092312600629154 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8F274FF42092312600629154 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8F274FF72092312600629154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F274FF92092312600629154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F274FFC2092312600629154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F274FFE2092312600629154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +53,20 @@
 		8F2750102092312700629154 /* FeedParserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedParserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2750142092312700629154 /* FeedParserUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedParserUITests.m; sourceTree = "<group>"; };
 		8F2750162092312700629154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F27502E20923C8700629154 /* FeedsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsTableViewController.m; sourceTree = "<group>"; };
+		8F27502F20923C8700629154 /* FeedsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsTableViewController.h; sourceTree = "<group>"; };
+		8F27503120923D2100629154 /* Feed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		8F27503220923D2100629154 /* Feed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		8F27503420923D5000629154 /* FeedViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewModel.h; sourceTree = "<group>"; };
+		8F27503520923D5000629154 /* FeedViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewModel.m; sourceTree = "<group>"; };
+		8F27503720923EC300629154 /* FeedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
+		8F27503820923EC300629154 /* FeedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		8F27503A2092439900629154 /* FeedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedData.h; sourceTree = "<group>"; };
+		8F27503B2092439900629154 /* FeedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedData.m; sourceTree = "<group>"; };
+		8F27503E209245D200629154 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		8F27503F209245D200629154 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		8F546D5320925CA800D39BCD /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		8F546D5420925CA800D39BCD /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +117,12 @@
 		8F274FEF2092312600629154 /* FeedParser */ = {
 			isa = PBXGroup;
 			children = (
+				8F27503D209245BE00629154 /* Utility */,
+				8F27502B20923C6100629154 /* Model */,
+				8F27502C20923C6100629154 /* View */,
+				8F27502D20923C6200629154 /* ViewModel */,
 				8F274FF02092312600629154 /* AppDelegate.h */,
 				8F274FF12092312600629154 /* AppDelegate.m */,
-				8F274FF32092312600629154 /* ViewController.h */,
-				8F274FF42092312600629154 /* ViewController.m */,
-				8F274FF62092312600629154 /* Main.storyboard */,
 				8F274FF92092312600629154 /* Assets.xcassets */,
 				8F274FFB2092312600629154 /* LaunchScreen.storyboard */,
 				8F274FFE2092312600629154 /* Info.plist */,
@@ -130,6 +147,48 @@
 				8F2750162092312700629154 /* Info.plist */,
 			);
 			path = FeedParserUITests;
+			sourceTree = "<group>";
+		};
+		8F27502B20923C6100629154 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F27503120923D2100629154 /* Feed.h */,
+				8F27503220923D2100629154 /* Feed.m */,
+				8F27503A2092439900629154 /* FeedData.h */,
+				8F27503B2092439900629154 /* FeedData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F27502C20923C6100629154 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F546D5320925CA800D39BCD /* BaseTableViewController.h */,
+				8F546D5420925CA800D39BCD /* BaseTableViewController.m */,
+				8F27502F20923C8700629154 /* FeedsTableViewController.h */,
+				8F27502E20923C8700629154 /* FeedsTableViewController.m */,
+				8F27503720923EC300629154 /* FeedTableViewCell.h */,
+				8F27503820923EC300629154 /* FeedTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F27502D20923C6200629154 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8F27503420923D5000629154 /* FeedViewModel.h */,
+				8F27503520923D5000629154 /* FeedViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8F27503D209245BE00629154 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8F27503E209245D200629154 /* Utility.h */,
+				8F27503F209245D200629154 /* Utility.m */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +299,6 @@
 			files = (
 				8F274FFD2092312600629154 /* LaunchScreen.storyboard in Resources */,
 				8F274FFA2092312600629154 /* Assets.xcassets in Resources */,
-				8F274FF82092312600629154 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,9 +323,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F274FF52092312600629154 /* ViewController.m in Sources */,
+				8F275040209245D200629154 /* Utility.m in Sources */,
+				8F546D5520925CA800D39BCD /* BaseTableViewController.m in Sources */,
 				8F2750002092312600629154 /* main.m in Sources */,
+				8F27503920923EC300629154 /* FeedTableViewCell.m in Sources */,
+				8F27503320923D2100629154 /* Feed.m in Sources */,
+				8F27503620923D5000629154 /* FeedViewModel.m in Sources */,
 				8F274FF22092312600629154 /* AppDelegate.m in Sources */,
+				8F27503020923C8700629154 /* FeedsTableViewController.m in Sources */,
+				8F27503C2092439900629154 /* FeedData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,14 +367,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8F274FF62092312600629154 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F274FF72092312600629154 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8F274FFB2092312600629154 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

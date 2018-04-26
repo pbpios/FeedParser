@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "FeedsTableViewController.h"
+#import "FeedViewModel.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    FeedViewModel *feedModel = [[FeedViewModel alloc] init];
+    FeedsTableViewController *feedsTableViewController = [[FeedsTableViewController alloc] initWithViewModel:feedModel];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:feedsTableViewController];
+    self.window.rootViewController = navController;
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 
