@@ -9,12 +9,12 @@
 #import "BaseTableViewController.h"
 #import "FeedViewModel.h"
 #import "FeedTableViewCell.h"
-@interface FeedsTableViewController : BaseTableViewController
-{
+
+@interface FeedsTableViewController : BaseTableViewController {
     UIRefreshControl *refreshControl;
 }
-@property(nonatomic, strong) FeedViewModel *feedViewModel;
 
+@property (nonatomic, strong) FeedViewModel *feedViewModel;
 
 - (instancetype)initWithViewModel:(FeedViewModel *)viewModel;
 @end

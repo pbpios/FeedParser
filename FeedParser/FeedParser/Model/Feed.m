@@ -10,19 +10,19 @@
 
 @implementation Feed
 
--(id)initWithFeedDictionary:(NSDictionary *)feedDictionary {
+- (id)initWithFeedDictionary:(NSDictionary *)feedDictionary {
 
     if ([self validateDataDictionary:feedDictionary]) {
         self.titleString = [Utility stringWithNonEmptyString:[feedDictionary objectForKey:@"title"]];
         self.descriptionString = [Utility stringWithNonEmptyString:[feedDictionary objectForKey:@"description"]];
         self.imageURLString = [Utility stringWithNonEmptyString:[feedDictionary objectForKey:@"imageHref"]];
-        
+
         return self;
     }
-    return  nil;
+    return nil;
 }
 
--(BOOL)validateDataDictionary:(NSDictionary *)dataDictionary {
+- (BOOL)validateDataDictionary:(NSDictionary *)dataDictionary {
     NSString *titleString = [Utility stringWithNonEmptyString:[dataDictionary objectForKey:@"title"]];
     NSString *descriptionString = [Utility stringWithNonEmptyString:[dataDictionary objectForKey:@"description"]];
     NSString *imageURLString = [Utility stringWithNonEmptyString:[dataDictionary objectForKey:@"imageHref"]];

@@ -10,9 +10,8 @@
 
 @implementation Utility
 
-+ (NSString *)stringWithNonEmptyString:(NSString *)str
-{
-    if([str isKindOfClass:[NSNull class]] || [str isEqualToString:@""]||[str  isEqual:NULL]||[str isEqualToString:@"(null)"]||str==nil || [str isEqualToString:@"<null>"]){
++ (NSString *)stringWithNonEmptyString:(NSString *)str {
+    if ([str isKindOfClass:[NSNull class]] || [str isEqualToString:@""] || [str isEqual:NULL] || [str isEqualToString:@"(null)"] || str == nil || [str isEqualToString:@"<null>"]) {
         return @"";
     }
     return str;

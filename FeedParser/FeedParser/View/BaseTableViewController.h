@@ -11,19 +11,18 @@
 /**
  BaseTableViewController for having a common features we can inherit in derived classes
  */
-@interface BaseTableViewController : UITableViewController
-{
+@interface BaseTableViewController : UITableViewController {
     UIActivityIndicatorView *loadingIndicator;
 }
 
 /**
  Shows loading indicator on screen
  */
--(void)showLoadingView;
+- (void)showLoadingView;
 
 /**
  Hides loading indicator
  */
--(void)hideLoadingView;
+- (void)hideLoadingView;
 
 @end

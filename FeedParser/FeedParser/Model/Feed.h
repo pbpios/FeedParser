@@ -8,10 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "Utility.h"
+
+/**
+ Feed class contains the instance member of feed
+ */
 @interface Feed : NSObject
-@property(nonatomic, strong) NSString *titleString;
-@property(nonatomic, strong) NSString *descriptionString;
-@property(nonatomic, strong) NSString *imageURLString;
+
+/**
+ Title string in feed list
+ */
+@property (nonatomic, strong) NSString *titleString;
+
+/**
+ Description to be displayed in feed list
+ */
+@property (nonatomic, strong) NSString *descriptionString;
+
+/**
+ Image url that gets downloaded and while showing a list
+ */
+@property (nonatomic, strong) NSString *imageURLString;
 
 /**
  Returns Feed instance instantiated from feedDictionary
@@ -19,5 +35,6 @@
  @param feedDictionary feed dictionary returned from API
  @return Feed instance
  */
--(id)initWithFeedDictionary:(NSDictionary *)feedDictionary;
+- (id)initWithFeedDictionary:(NSDictionary *)feedDictionary;
+
 @end

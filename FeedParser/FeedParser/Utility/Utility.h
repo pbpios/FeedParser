@@ -12,6 +12,7 @@
  Utility class is collection of generic class methods
  */
 @interface Utility : NSObject
+
 /**
  Check if String has null or nil and returns the empty string.
 
