@@ -20,6 +20,7 @@
 		8F27503C2092439900629154 /* FeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503B2092439900629154 /* FeedData.m */; };
 		8F275040209245D200629154 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503F209245D200629154 /* Utility.m */; };
 		8F546D5520925CA800D39BCD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F546D5420925CA800D39BCD /* BaseTableViewController.m */; };
+		8FD99B782099E50F00E8B397 /* BaseDataTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD99B772099E50F00E8B397 /* BaseDataTransfer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		8F27503F209245D200629154 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		8F546D5320925CA800D39BCD /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		8F546D5420925CA800D39BCD /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		8FD99B762099E50F00E8B397 /* BaseDataTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDataTransfer.h; sourceTree = "<group>"; };
+		8FD99B772099E50F00E8B397 /* BaseDataTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDataTransfer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,7 @@
 		8F274FEF2092312600629154 /* FeedParser */ = {
 			isa = PBXGroup;
 			children = (
+				8FD99B752099E4F600E8B397 /* API */,
 				8F27503D209245BE00629154 /* Utility */,
 				8F27502B20923C6100629154 /* Model */,
 				8F27502C20923C6100629154 /* View */,
@@ -189,6 +193,15 @@
 				8F27503F209245D200629154 /* Utility.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		8FD99B752099E4F600E8B397 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8FD99B762099E50F00E8B397 /* BaseDataTransfer.h */,
+				8FD99B772099E50F00E8B397 /* BaseDataTransfer.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +343,7 @@
 				8F27503320923D2100629154 /* Feed.m in Sources */,
 				8F27503620923D5000629154 /* FeedViewModel.m in Sources */,
 				8F274FF22092312600629154 /* AppDelegate.m in Sources */,
+				8FD99B782099E50F00E8B397 /* BaseDataTransfer.m in Sources */,
 				8F27503020923C8700629154 /* FeedsTableViewController.m in Sources */,
 				8F27503C2092439900629154 /* FeedData.m in Sources */,
 			);

@@ -7,11 +7,32 @@
 //
 
 #import "FeedViewModel.h"
+#import "BaseDataTransfer.h"
 #define REQUEST_URL @"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 
 @implementation FeedViewModel
 
 - (void)pullFeedWithCompletionHandler:(void (^)(FeedData *feedData, NSError *error))completionHandler {
+    
+    BaseDataTransfer *dataTransfer = [[BaseDataTransfer alloc] initWithURL:REQUEST_URL];
+    [dataTransfer setSuccessBlock:^(BaseDataTransfer *dataTransfer, id responseObject) {
+        if (responseObject) {
+            FeedData *feedData = [[FeedData alloc] initWithFeedDataDictionary:responseObject];
+            self.feedData = feedData;
+            completionHandler(feedData, nil);
+        }
+    }];
+    
+    [dataTransfer setFailureBlock:^(BaseDataTransfer *dataTransfer, NSError *error) {
+        completionHandler(nil, error);
+    }];
+    
+    [dataTransfer sendRequest];
+    
+    
+    
+    
+    /*
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
       NSURLSession *session = [NSURLSession sharedSession];
       NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:REQUEST_URL]
@@ -33,6 +54,7 @@
                                               }];
       [dataTask resume];
     });
+     */
 }
 
 #pragma mark - Data Source
