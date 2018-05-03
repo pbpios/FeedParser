@@ -61,10 +61,11 @@
 - (void)setFeedData:(Feed *)feedDataObject {
     [self.feedTitleLabel setText:feedDataObject.titleString];
     [self.feedDescriptionLabel setText:feedDataObject.descriptionString];
+    [self.feedImageView setImage:[UIImage imageNamed:@"placeholder"]];
+
     if (feedDataObject.imageURLString.length > 0) {
         NSURL *url = [NSURL URLWithString:feedDataObject.imageURLString];
         __weak __typeof(self) weakSelf = self;
-
         [self downloadImageWithURL:url
                    completionBlock:^(BOOL succeeded, UIImage *image) {
                      if (succeeded) {
@@ -78,19 +79,34 @@
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-      NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
-                                                           completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
-                                                             if (!error) {
-                                                                 data = [NSData dataWithContentsOfURL:url];
-                                                                 UIImage *image = [[UIImage alloc] initWithData:data];
-                                                                 completionBlock(YES, image);
-                                                             } else {
-                                                                 completionBlock(NO, nil);
-                                                             }
-                                                           }];
-      [task resume];
-    });
+    
+//    Using NSURLConnection to download images
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   if ( !error )
+                                   {
+                                       UIImage *image = [[UIImage alloc] initWithData:data];
+                                       completionBlock(YES,image);
+                                   } else{
+                                       completionBlock(NO,nil);
+                                   }
+                               }];
+
+        
+        
+//      NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
+//                                                           completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+//                                                             if (!error) {
+//                                                                 data = [NSData dataWithContentsOfURL:url];
+//                                                                 UIImage *image = [[UIImage alloc] initWithData:data];
+//                                                                 completionBlock(YES, image);
+//                                                             } else {
+//                                                                 completionBlock(NO, nil);
+//                                                             }
+//                                                           }];
+//      [task resume];
 }
 
 @end

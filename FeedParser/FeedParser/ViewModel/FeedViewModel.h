@@ -10,6 +10,10 @@
 #import "Feed.h"
 #import "FeedData.h"
 #import <UIKit/UIkit.h>
+
+/**
+ View model class to get the data from transfer and parse it. Sends the parsed data to controller
+ */
 @interface FeedViewModel : NSObject
 
 @property (nonatomic, strong) FeedData *feedData;
