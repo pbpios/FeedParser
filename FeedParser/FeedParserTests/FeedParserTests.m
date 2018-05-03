@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "FeedViewModel.h"
 #import "FeedTableViewCell.h"
+#import "BaseDataTransfer.h"
 @interface FeedParserTests : XCTestCase
 
 @property (nonatomic, strong) FeedTableViewCell *feedTableViewCell;
@@ -45,6 +46,22 @@
     }];
 }
 
+- (void)testDataTransfer {
+    BaseDataTransfer *dataTransfer = [[BaseDataTransfer alloc] initWithURL:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"];
+    [dataTransfer setSuccessBlock:^(BaseDataTransfer *dataTransfer, id responseObject) {
+        if (responseObject) {
+            FeedData *feedData = [[FeedData alloc] initWithFeedDataDictionary:responseObject];
+            XCTAssertNil(feedData,"Feed data not downloaded and parsed");
+            XCTAssertNil(feedData.feedArray,"Feed array not parsed");
+        }
+    }];
+    
+    [dataTransfer setFailureBlock:^(BaseDataTransfer *dataTransfer, NSError *error) {
+        XCTAssertNotNil(error,@"Request Failed");
+    }];
+    
+    [dataTransfer sendRequest];
+}
 
 -(void)testDownloadImage
 {
@@ -54,7 +71,6 @@
     }];
     
 }
-
 
 - (void)testPerformanceExample {
     [self measureBlock:^{

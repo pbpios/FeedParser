@@ -40,23 +40,4 @@
                            }];
 }
 
-
--(void)downloadImage {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            NSURLRequest *request = [NSURLRequest requestWithURL:self.requestURL];
-            
-            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue new] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                if (connectionError)
-                {
-                    self.failureBlock(self, connectionError);
-                }
-                else
-                {
-                    UIImage *image = [[UIImage alloc] initWithData:data];
-                    self.successBlock(self, image);
-                }
-            }];
-        });
-}
-
 @end
