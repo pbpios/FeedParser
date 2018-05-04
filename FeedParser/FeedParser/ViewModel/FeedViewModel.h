@@ -10,6 +10,8 @@
 #import "Feed.h"
 #import "FeedData.h"
 #import <UIKit/UIkit.h>
+#import "FeedTableViewCell.h"
+#import "BaseDataTransfer.h"
 
 /**
  View model class to get the data from transfer and parse it. Sends the parsed data to controller
@@ -22,8 +24,9 @@
  Pull the data from feed URL and parse it
 
  @param completionHandler completionHandler
+ @param failureHandler failureHandler
  */
-- (void)pullFeedWithCompletionHandler:(void (^)(FeedData *feedData, NSError *error))completionHandler;
+- (void)pullFeedWithCompletionHandler:(void (^)(FeedData *feedData, NSError *error))completionHandler withFailureBlock:(void (^) (NSError *error, BOOL isConnection))failureHandler;
 
 /**
  Returns Feed object at index from array
@@ -54,5 +57,14 @@
  @return Height for cell with respect to it content
  */
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+
+/**
+ Sets the data to cell and download image
+
+ @param indexPath indexPath
+ @param cell cell instance
+ */
+-(void)setCellDataAtIndexPath:(NSIndexPath *)indexPath forCell:(FeedTableViewCell *)cell;
 
 @end

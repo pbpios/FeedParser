@@ -21,6 +21,7 @@
 		8F275040209245D200629154 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F27503F209245D200629154 /* Utility.m */; };
 		8F546D5520925CA800D39BCD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F546D5420925CA800D39BCD /* BaseTableViewController.m */; };
 		8FD99B782099E50F00E8B397 /* BaseDataTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD99B772099E50F00E8B397 /* BaseDataTransfer.m */; };
+		AF0CC254209C5D1D00CAA7C4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0CC253209C5D1D00CAA7C4 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		8F546D5420925CA800D39BCD /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		8FD99B762099E50F00E8B397 /* BaseDataTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDataTransfer.h; sourceTree = "<group>"; };
 		8FD99B772099E50F00E8B397 /* BaseDataTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDataTransfer.m; sourceTree = "<group>"; };
+		AF0CC252209C5D1D00CAA7C4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AF0CC253209C5D1D00CAA7C4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 		8F27503D209245BE00629154 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				AF0CC252209C5D1D00CAA7C4 /* Reachability.h */,
+				AF0CC253209C5D1D00CAA7C4 /* Reachability.m */,
 				8F27503E209245D200629154 /* Utility.h */,
 				8F27503F209245D200629154 /* Utility.m */,
 			);
@@ -339,6 +344,7 @@
 				8F275040209245D200629154 /* Utility.m in Sources */,
 				8F546D5520925CA800D39BCD /* BaseTableViewController.m in Sources */,
 				8F2750002092312600629154 /* main.m in Sources */,
+				AF0CC254209C5D1D00CAA7C4 /* Reachability.m in Sources */,
 				8F27503920923EC300629154 /* FeedTableViewCell.m in Sources */,
 				8F27503320923D2100629154 /* Feed.m in Sources */,
 				8F27503620923D5000629154 /* FeedViewModel.m in Sources */,

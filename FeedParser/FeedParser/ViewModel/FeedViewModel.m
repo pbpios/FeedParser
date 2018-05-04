@@ -7,51 +7,37 @@
 //
 
 #import "FeedViewModel.h"
-#import "BaseDataTransfer.h"
 #define REQUEST_URL @"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 
 @implementation FeedViewModel
 
-- (void)pullFeedWithCompletionHandler:(void (^)(FeedData *feedData, NSError *error))completionHandler {
+- (void)pullFeedWithCompletionHandler:(void (^)(FeedData *feedData, NSError *error))completionHandler withFailureBlock:(void (^) (NSError *error, BOOL isConnection))failureHandler{
     
     BaseDataTransfer *dataTransfer = [[BaseDataTransfer alloc] initWithURL:REQUEST_URL];
     [dataTransfer setSuccessBlock:^(BaseDataTransfer *dataTransfer, id responseObject) {
         if (responseObject) {
-            FeedData *feedData = [[FeedData alloc] initWithFeedDataDictionary:responseObject];
-            self.feedData = feedData;
-            completionHandler(feedData, nil);
+            @try {
+                FeedData *feedData = [[FeedData alloc] initWithFeedDataDictionary:responseObject];
+                self.feedData = feedData;
+                completionHandler(feedData, nil);
+            }
+            @catch (NSException *exception) {
+                self.feedData = nil;
+                completionHandler(self.feedData, nil);
+            }
         }
     }];
     
     [dataTransfer setFailureBlock:^(BaseDataTransfer *dataTransfer, NSError *error) {
-        completionHandler(nil, error);
+        failureHandler(error,YES);
     }];
     
+    [dataTransfer setNetworkConnectivityBlock:^(BaseDataTransfer *dataTransfer, BOOL isConnection) {
+        if (!isConnection) {
+            failureHandler(nil,isConnection);
+        }
+    }];
     [dataTransfer sendRequest];
-    
-    /*
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-      NSURLSession *session = [NSURLSession sharedSession];
-      NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:REQUEST_URL]
-                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                NSError *jsonError = nil;
-                                                NSString *responseString = [[[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\0" withString:@""];
-                                                NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-                                                NSMutableDictionary *feedDataDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
-
-                                                if (feedDataDictionary) {
-                                                    FeedData *feedData = [[FeedData alloc] initWithFeedDataDictionary:feedDataDictionary];
-                                                    self.feedData = feedData;
-                                                    completionHandler(feedData, nil);
-                                                } else if (jsonError) {
-                                                    completionHandler(nil, jsonError);
-                                                } else {
-                                                    completionHandler(nil, error);
-                                                }
-                                              }];
-      [dataTask resume];
-    });
-     */
 }
 
 #pragma mark - Data Source
@@ -88,6 +74,31 @@
         return 50;
     }
     return height;
+}
+
+-(void)setCellDataAtIndexPath:(NSIndexPath *)indexPath forCell:(FeedTableViewCell *)cell {
+    
+    Feed *feedObject = [self feedAtIndexPath:indexPath];
+
+    [cell.feedTitleLabel setText:feedObject.titleString];
+    [cell.feedDescriptionLabel setText:feedObject.descriptionString];
+    [cell.feedImageView setImage:[UIImage imageNamed:@"placeholder"]];
+    
+    if (feedObject.imageURLString.length > 0) {
+        BaseDataTransfer *dataTransfer = [[BaseDataTransfer alloc] initWithURL:feedObject.imageURLString];
+        [dataTransfer setSuccessBlock:^(BaseDataTransfer *dataTransfer, id responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell.feedImageView setImage:responseObject];
+            });
+        }];
+        
+        [dataTransfer setFailureBlock:^(BaseDataTransfer *dataTransfer, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell.feedImageView setImage:[UIImage imageNamed:@"placeholder"]];
+            });
+        }];
+        [dataTransfer downloadImage];
+    }
 }
 
 

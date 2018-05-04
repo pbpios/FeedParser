@@ -66,10 +66,16 @@
 -(void)testDownloadImage
 {
     NSString *urlString = @"http://static.guim.co.uk/sys-images/Music/Pix/site_furniture/2007/04/19/avril_lavigne.jpg";
-    [self.feedTableViewCell downloadImageWithURL:[NSURL URLWithString:urlString] completionBlock:^(BOOL succeeded, UIImage *image) {
-        XCTAssertNil(image,"Image not downloaded");
+    BaseDataTransfer *dataTransfer = [[BaseDataTransfer alloc] initWithURL:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"];
+    [dataTransfer setSuccessBlock:^(BaseDataTransfer *dataTransfer, id responseObject) {
+        XCTAssertNil(responseObject,"Image not downloaded");
     }];
     
+    [dataTransfer setFailureBlock:^(BaseDataTransfer *dataTransfer, NSError *error) {
+        XCTAssertNotNil(error,@"Request Failed");
+    }];
+    
+    [dataTransfer downloadImage];
 }
 
 - (void)testPerformanceExample {

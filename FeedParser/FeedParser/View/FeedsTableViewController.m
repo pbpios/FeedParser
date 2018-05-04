@@ -7,7 +7,6 @@
 //
 
 #import "FeedsTableViewController.h"
-
 @interface FeedsTableViewController ()
 
 @end
@@ -51,19 +50,44 @@ static NSString *CELLIDENTIFIER = @"CellIdentifier";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 - (void)bindViewModel {
     [self showLoadingView];
     [self.feedViewModel pullFeedWithCompletionHandler:^(FeedData *feedData, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self hideLoadingView];
+        if (refreshControl) {
+            [refreshControl endRefreshing];
+        }
+        [self setTitle:[self.feedViewModel navigationTitle]];
+        [self.tableView reloadData];
+      });
+    }
+        withFailureBlock:^(NSError *error, BOOL isConnection) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+           
             [self hideLoadingView];
             if (refreshControl) {
                 [refreshControl endRefreshing];
             }
-            [self setTitle:[self.feedViewModel navigationTitle]];
-            [self.tableView reloadData];
-        });
+              
+            NSString *errorMessage = @"";
+            if (isConnection) {
+                errorMessage = @"Unkown error occurred.";
+                if (error) {
+                    errorMessage = error.description;
+                }
+            } else {
+                errorMessage = @"The internet connection appears to be offline.";
+            }
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Feed Parser" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancel];
+            [self presentViewController:alert animated:YES completion:nil];
+          });
     }];
 }
 
@@ -78,8 +102,7 @@ static NSString *CELLIDENTIFIER = @"CellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELLIDENTIFIER forIndexPath:indexPath];
-    Feed *feedObject = [self.feedViewModel feedAtIndexPath:indexPath];
-    [cell setFeedData:feedObject];
+    [self.feedViewModel setCellDataAtIndexPath:indexPath forCell:cell];
     return cell;
 }
 
@@ -92,3 +115,4 @@ static NSString *CELLIDENTIFIER = @"CellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
+

@@ -7,7 +7,6 @@
 //
 
 #import "FeedTableViewCell.h"
-#import "BaseDataTransfer.h"
 @implementation FeedTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -56,57 +55,6 @@
         [NSLayoutConstraint activateConstraints:@[ feedDescriptionLabelLeadingConstraint, feedDescriptionLabelTrailingConstraint, feedDescriptionLabelTopConstraint, feedDescriptionLabelBottomConstraint ]];
     }
     return self;
-}
-
-- (void)setFeedData:(Feed *)feedDataObject {
-    [self.feedTitleLabel setText:feedDataObject.titleString];
-    [self.feedDescriptionLabel setText:feedDataObject.descriptionString];
-    [self.feedImageView setImage:[UIImage imageNamed:@"placeholder"]];
-
-    if (feedDataObject.imageURLString.length > 0) {
-        NSURL *url = [NSURL URLWithString:feedDataObject.imageURLString];
-        __weak __typeof(self) weakSelf = self;
-        [self downloadImageWithURL:url
-                   completionBlock:^(BOOL succeeded, UIImage *image) {
-                     if (succeeded) {
-                         dispatch_async(dispatch_get_main_queue(), ^{
-                           [weakSelf.feedImageView setImage:image];
-                         });
-                     }
-                   }];
-    }
-}
-
-- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
-    
-    
-//    Using NSURLConnection to download images
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   if ( !error )
-                                   {
-                                       UIImage *image = [[UIImage alloc] initWithData:data];
-                                       completionBlock(YES,image);
-                                   } else{
-                                       completionBlock(NO,nil);
-                                   }
-                               }];
-
-        
-        
-//      NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url
-//                                                           completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
-//                                                             if (!error) {
-//                                                                 data = [NSData dataWithContentsOfURL:url];
-//                                                                 UIImage *image = [[UIImage alloc] initWithData:data];
-//                                                                 completionBlock(YES, image);
-//                                                             } else {
-//                                                                 completionBlock(NO, nil);
-//                                                             }
-//                                                           }];
-//      [task resume];
 }
 
 @end
