@@ -43,6 +43,8 @@
         
         XCTAssertEqual(feedData.feedArray.count, 0,@"feeds not fetched or parsed");
         
+    } withFailureBlock:^(NSError *error, BOOL isConnection) {
+        XCTAssertEqual(isConnection, NO,@"Internet connection not available");
     }];
 }
 
@@ -65,7 +67,6 @@
 
 -(void)testDownloadImage
 {
-    NSString *urlString = @"http://static.guim.co.uk/sys-images/Music/Pix/site_furniture/2007/04/19/avril_lavigne.jpg";
     BaseDataTransfer *dataTransfer = [[BaseDataTransfer alloc] initWithURL:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"];
     [dataTransfer setSuccessBlock:^(BaseDataTransfer *dataTransfer, id responseObject) {
         XCTAssertNil(responseObject,"Image not downloaded");
@@ -82,6 +83,8 @@
     [self measureBlock:^{
         [self.feedViewModel pullFeedWithCompletionHandler:^(FeedData *feedData, NSError *error) {
             
+        } withFailureBlock:^(NSError *error, BOOL isConnection) {
+        
         }];
     }];
 }
